@@ -1,11 +1,11 @@
 {
-  "name": "My Training Smart",
-  "short_name": "Training",
+  "name": "A&J Training Smart",
+  "short_name": "A&J Training",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#07090d",
-  "theme_color": "#07090d",
-  "description": "Fitness-only adaptive training coach with progressive overload, RIR, smart rest, exercise swaps, custom exercises, history and PRs.",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "A&J fitness-only adaptive training app with saved programs, smart progression, RIR, rest timers, exercise swaps, abs/core and mobility.",
   "icons": [
     {
       "src": "icon-192.png",
