@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="A&J Training">
-<title>A&J Training Smart v5.3</title>
+<title>A&J Training Smart v5.4</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
@@ -148,13 +148,28 @@ button{cursor:pointer}
 @media(max-width:480px){.detailHero{grid-template-columns:112px 1fr}.detailVisual{height:132px}.categoryCard{grid-template-columns:68px 1fr 18px}.categoryCard .visual{width:68px;height:68px}}
 
 @media(max-width:480px){.brandLogo{width:48px;height:48px}.brandText h1{font-size:23px}.hero h2{font-size:24px}.actions{grid-template-columns:repeat(2,1fr)}.setHead,.setRow{grid-template-columns:27px 1fr 1fr 1fr 36px}.programActions{grid-template-columns:1fr}}
+
+/* v5.4 premium anatomy + exact target upgrade */
+.muscleStrip{grid-auto-columns:minmax(150px,176px);gap:10px;padding:0 4px 8px;scroll-padding-left:4px;scroll-snap-type:x proximity}
+.muscleCard{padding:0;min-height:216px;overflow:hidden;scroll-snap-align:start;border-color:#343434;background:linear-gradient(180deg,#121212,#0d0d0e)}
+.muscleCardVisual{height:126px;border-radius:0;background:#080808;border-bottom:1px solid #292929}
+.muscleCard b,.muscleCard small,.muscleCard .anatomy{margin-left:10px;margin-right:10px}.muscleCard b{font-size:14px;margin-top:9px}.muscleCard small{font-size:10px;display:block;margin-top:4px}.muscleCard .anatomy{font-size:9px;margin-top:5px;margin-bottom:9px}
+.exTop{grid-template-columns:92px 1fr auto;gap:11px;padding:13px}.exIcon{width:92px;height:92px;border-radius:16px}.exName{font-size:17px}.exMeta{font-size:11px}.targetLine{font-size:11px;line-height:1.45}.machine{margin-top:7px}
+.exercise{border-color:#303030;box-shadow:0 9px 28px rgba(0,0,0,.22)}
+.arrow{width:42px;height:42px;border-radius:13px;font-size:18px}
+.exBody{padding:12px}
+.categoryGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.categoryCard{grid-template-columns:86px 1fr 16px;padding:8px 9px;border-radius:17px}.categoryCard .visual{width:86px;height:86px}.categoryCard b{font-size:13px}.categoryCard small{font-size:9px}.categoryCard .count{font-size:8px}
+.muscleImpact{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:10px 0}.impactCard{background:#0c0c0d;border:1px solid #313136;border-radius:14px;overflow:hidden}.impactCard.primary{border-color:#7a2e2e}.impactImg{height:118px;background:#080808}.impactImg img{width:100%;height:100%;object-fit:cover}.impactTxt{padding:9px}.impactTxt b{display:block;font-size:12px}.impactRole{display:inline-block;margin-top:5px;font-size:8px;font-weight:900;letter-spacing:.08em;padding:4px 6px;border-radius:7px;background:#202024;color:#aaa}.impactCard.primary .impactRole{background:#351313;border:1px solid #6b2828;color:var(--pink)}
+.targetExplainer{background:linear-gradient(145deg,#180909,#0d0d0d);border:1px solid #5b2525;border-radius:15px;padding:11px;margin:9px 0}.targetExplainer h4{margin:0 0 6px;font-size:13px}.targetExplainer p{margin:0;color:#bbb;font-size:10px;line-height:1.55}
+@media(max-width:480px){.categoryGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.categoryCard{grid-template-columns:70px 1fr 12px}.categoryCard .visual{width:70px;height:70px}.categoryCard small{display:none}.exTop{grid-template-columns:88px 1fr auto}.exIcon{width:88px;height:88px}.muscleImpact{grid-template-columns:repeat(3,1fr)}.impactImg{height:88px}.impactTxt{padding:7px}.impactTxt b{font-size:10px}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <div class="top">
  <div class="brand"><img class="brandLogo" src="aj-logo.png" alt="A&J"><div class="brandText"><h1>A&J Training</h1><p>My Training · Adaptive Coach</p></div></div>
- <div style="text-align:right"><div class="badge">SMART v5.3</div><button class="link" onclick="openBackup()">Backup</button></div>
+ <div style="text-align:right"><div class="badge">SMART v5.4</div><button class="link" onclick="openBackup()">Backup</button></div>
 </div>
 
 <section id="today" class="panel active">
@@ -519,7 +534,7 @@ function renderMuscleFocus(){
  if(!focus.length){el.innerHTML="";return}
  const all=effectivePlanExercises(activeDay).flatMap(e=>exerciseTargets(e).secondary||[]);
  const secs=[...new Set(all)].slice(0,5);
- el.innerHTML=`<div class="muscleFocusHead"><h3>Muscle Focus</h3><span>direct work by exact region</span></div><div class="muscleStrip">${focus.map(([name,sets])=>`<div class="muscleCard"><div class="muscleCardVisual">${muscleVisual(name,true)}</div><b>${esc(name)}</b><small>${sets} direct set${sets===1?"":"s"}</small><span class="anatomy">${esc((MUSCLE_INFO[name]||{}).anatomy||name)}</span></div>`).join("")}</div>${secs.length?`<div class="workoutCoverageNote">Secondary involvement: ${secs.map(esc).join(" · ")}</div>`:""}`;
+ el.innerHTML=`<div class="muscleFocusHead"><h3>Muscle Focus</h3><span>exact regions trained today</span></div><div class="muscleStrip">${focus.map(([name,sets])=>`<div class="muscleCard"><div class="muscleCardVisual">${muscleVisual(name,true)}</div><b>${esc(name)}</b><small>${sets} direct set${sets===1?"":"s"}</small><span class="anatomy">${esc((MUSCLE_INFO[name]||{}).anatomy||name)} · PRIMARY WORK</span></div>`).join("")}</div>${secs.length?`<div class="workoutCoverageNote">Secondary involvement: ${secs.map(esc).join(" · ")}</div>`:""}`;
 }
 function programCode(p){
  const n=(p?.name||"Plan").replace(/[^A-Za-z ]/g,"").trim().split(/\s+/);
@@ -772,7 +787,7 @@ window.saveTodayEdit=i=>{let e=activeWorkout.exercises[i],sets=Math.max(1,num($(
 
 window.showTips=i=>{
  let e=currentExercises()[i],L=lib(e.name),r=recommendation(e),t=exerciseTargets(e),mem=machineMemory[e.name]||{};
- openModal(e.name,`<div class="detailHero"><div class="detailVisual">${exerciseVisual(e)}</div><div class="detailTargets"><div class="eyebrow">EXACT MUSCLE TARGET</div><b>${esc(t.primary)}</b><p>${esc((MUSCLE_INFO[t.primary]||{}).anatomy||t.primary)}</p><div class="chipRow"><span class="muscleChip primary">Primary · ${esc(t.primary)}</span>${t.secondary.map(s=>`<span class="muscleChip">${esc(s)}</span>`).join("")}</div></div></div><div class="detailSection"><h4>Muscles worked</h4><div class="detailMuscleGrid">${[t.primary,...t.secondary.slice(0,2)].map((m,mi)=>`<div class="detailMuscleCard ${mi===0?"primary":""}"><div class="img">${muscleVisual(m,true)}</div><div class="txt"><b>${esc(m)}</b><small>${mi===0?"PRIMARY":"SECONDARY"}</small></div></div>`).join("")}</div></div><div class="detailSection"><h4>Why this exercise is here</h4><p>${esc(L.tip)}</p></div><div class="detailSection"><h4>Smart Coach</h4><p>${esc(r.msg)}</p><p style="margin-top:6px">${esc(r.last||"")}</p></div><div class="detailSection"><h4>Your machine setup</h4><p>${esc(mem.machine||e.machine||"No machine / seat saved yet.")}${mem.notes?`<br>${esc(mem.notes)}`:""}</p></div><button class="primary small" onclick="closeModal();showHistory(${i})">View exercise history</button>`)
+ openModal(e.name,`<div class="detailHero"><div class="detailVisual">${exerciseVisual(e)}</div><div class="detailTargets"><div class="eyebrow">EXACT MUSCLE TARGET</div><b>${esc(t.primary)}</b><p>${esc((MUSCLE_INFO[t.primary]||{}).anatomy||t.primary)}</p><div class="chipRow"><span class="muscleChip primary">PRIMARY · ${esc(t.primary)}</span>${t.secondary.map(s=>`<span class="muscleChip">SECONDARY · ${esc(s)}</span>`).join("")}</div></div></div><div class="targetExplainer"><h4>What you should feel</h4><p>The highlighted primary muscle should do most of the work. Secondary muscles assist the movement but should not dominate your technique.</p></div><div class="detailSection"><h4>Muscle Impact</h4><div class="muscleImpact">${[t.primary,...t.secondary.slice(0,2)].map((m,mi)=>`<div class="impactCard ${mi===0?"primary":""}"><div class="impactImg">${muscleVisual(m,true)}</div><div class="impactTxt"><b>${esc(m)}</b><span class="impactRole">${mi===0?"PRIMARY":"SECONDARY"}</span></div></div>`).join("")}</div></div><div class="detailSection"><h4>Why this exercise is here</h4><p>${esc(L.tip)}</p></div><div class="detailSection"><h4>Smart Coach</h4><p>${esc(r.msg)}</p><p style="margin-top:6px">${esc(r.last||"")}</p></div><div class="detailSection"><h4>Your machine setup</h4><p>${esc(mem.machine||e.machine||"No machine / seat saved yet.")}${mem.notes?`<br>${esc(mem.notes)}`:""}</p></div><button class="primary small" onclick="closeModal();showHistory(${i})">View exercise history</button>`)
 }
 window.showHistory=i=>{
  let e=currentExercises()[i],rows=[];for(const h of history){let x=(h.exercises||[]).find(y=>y.name===e.name);if(x?.sets?.length)rows.push({date:h.date,program:h.programName,x})}
