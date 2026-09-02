@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "A&J Training Smart v5.5 with premium exercise-specific movement visuals, realistic anatomy targeting, saved programs, smart progression, RIR, rest timers and machine memory.",
+  "description": "A&J Training Smart v5.5.1 with premium exercise thumbnails, upgraded anatomy targeting, exercise details, saved programs, smart progression, RIR, rest timers and machine memory.",
   "icons": [
     {"src":"icon-192.png","sizes":"192x192","type":"image/png"},
     {"src":"icon-512.png","sizes":"512x512","type":"image/png"}
